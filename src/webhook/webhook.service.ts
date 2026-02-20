@@ -44,7 +44,7 @@ export class WebhookService {
     const { action, symbol, price, time } = payload;
     const isBuy = action === ActionType.BUY;
 
-    const header = isBuy ? '� <b>BUY SIGNAL ALERT</b> 🟢' : '🔻 <b>SELL SIGNAL ALERT</b> 🔴';
+    const header = isBuy ? '<b>BUY SIGNAL ALERT</b> 🟢' : '🔻 <b>SELL SIGNAL ALERT</b> 🔴';
     const strategies = isBuy ? 'Long' : 'Short';
 
     return `
