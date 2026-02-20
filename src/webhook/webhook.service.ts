@@ -41,11 +41,12 @@ export class WebhookService {
   }
 
   private formatMessage(payload: WebhookPayload): string {
-    const { action, symbol, price, time } = payload;
+    const { action, symbol, price, time, notes } = payload;
     const isBuy = action === ActionType.BUY;
 
-    const header = isBuy ? '<b>BUY SIGNAL ALERT</b> 🟢' : '🔻 <b>SELL SIGNAL ALERT</b> 🔴';
+    const header = isBuy ? '🚀 <b>BUY SIGNAL ALERT</b> 🟢' : '🔻 <b>SELL SIGNAL ALERT</b> 🔴';
     const strategies = isBuy ? 'Long' : 'Short';
+    const notesText = notes ? `\n\n<b>📝 Notes:</b>\n${notes}` : '';
 
     return `
 ${header}
@@ -53,7 +54,7 @@ ${header}
 <b>💎 Symbol:</b> #${symbol || 'UNKNOWN'}
 <b>⚡ Side:</b> ${strategies} (${action})
 <b>💰 Price:</b> ${price ? price : 'Market'}
-<b>⏰ Time:</b> ${time || new Date().toISOString()}
+<b>⏰ Time:</b> ${time || new Date().toISOString()}${notesText}
 
 <i>— 🤖 TradingView Webhook —</i>
     `.trim();

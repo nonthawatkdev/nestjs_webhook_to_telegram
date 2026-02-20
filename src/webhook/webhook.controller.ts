@@ -11,6 +11,7 @@ export interface WebhookPayload {
     symbol?: string;
     price?: number;
     time?: string;
+    notes?: string;
 }
 
 @Controller('webhook')
